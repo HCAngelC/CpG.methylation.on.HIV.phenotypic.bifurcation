@@ -1,0 +1,22 @@
+1. Use Bismark to index reference genome (Homo_sapiens.GRCh38.dna.primary_assembly.fa)
+$ /home/labadmin/Documents/Software/Bismark-master/bismark_genome_preparation --path_to_aligner /home/labadmin/Documents/Software/bowtie2-2.4.2-sra-linux-x86_64/ --verbose ../bismark/
+#Of note, reference genome to be saved in a folder and path to folder, not a file name.
+
+2. #Alignment and methylation calling
+$ /home/labadmin/Documents/Software/Bismark-master/bismark --genome /home/labadmin/Documents/Open_Source/Genome_index/bismark/ XXX.fq.gz > XXX.sam
+
+Output file
+XXX.sam
+XXX_bt2.bam
+XXX_bt2_SE_report.txt
+
+3. Select the mapped reads
+$ samtools view -b -F 4 XXX_bt2.bam > XXX_bt2.mapped.bam
+
+4 Convert to sam file
+$ samtools view -h XXX_bt2.mapped.bam > XXX_bt2.mapped.sam
+
+5. Sort chromosomes
+$ grep -v \'^[[:space:]]*\@\' XXX_bt2.mapped.sam | sort -k3,3 -k4,4n > XXX_bt2.mapped.sorted.sam
+
+XXX_bt2.mapped.sorted.sam input for methylKit in R.
