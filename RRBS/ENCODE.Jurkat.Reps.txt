@@ -1,0 +1,23 @@
+Data info
+Jurkat	None	UW	1	SL899	wgEncodeEH001359	GSM683792	1.2 GB	fastq	2011-03-24	2011-12-24	view=RawData; dataVersion=ENCODE Mar 2012 Freeze; subId=3830; md5sum=39053b5b05dbdcc5d7800802014a7d44;
+Jurkat	None	UW	2	SL1345	wgEncodeEH001359	GSM683806	968 MB	fastq	2011-03-21	2011-12-21	view=RawData; dataVersion=ENCODE Mar 2012 Freeze; subId=3820; md5sum=1102ceb4b2c7212f097b3cfc518b75ed;
+
+#Bismark laufen.
+$/home/labadmin/Documents/Software/Bismark-master/bismark --genome /home/labadmin/Documents/Open_Source/Genome_index/bismark/ /home/labadmin/Documents/Open_Source/RRBS.seq/wgEncodeHaibMethylRrbsJurkatUwRawDataRep1.fastq.gz > RRBS.Jurkat.Rep1.sam
+$/home/labadmin/Documents/Software/Bismark-master/bismark --genome /home/labadmin/Documents/Open_Source/Genome_index/bismark/ /home/labadmin/Documents/Open_Source/RRBS.seq/wgEncodeHaibMethylRrbsJurkatUwRawDataRep2.fastq.gz > RRBS.Jurkat.Rep2.sam
+
+Output file
+XXX.sam
+XXX_bt2.bam
+XXX_bt2_SE_report.txt
+
+#Select the mapped reads
+$ samtools view -b -F 4 XXX_bt2.bam > XXX_bt2.mapped.bam
+
+#Convert to sam file
+$ samtools view -h XXX_bt2.mapped.bam > XXX_bt2.mapped.sam
+
+#Sort chromosomes
+$ grep -v \'^[[:space:]]*\@\' XXX_bt2.mapped.sam | sort -k3,3 -k4,4n > XXX_bt2.mapped.sorted.sam
+
+XXX_bt2.mapped.sorted.sam input for methylKit in R.
