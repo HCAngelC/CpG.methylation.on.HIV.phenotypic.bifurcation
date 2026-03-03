@@ -184,3 +184,9 @@ cat("\nDone! Outputs:\n",
     "  feature_importance_heatmap.png\n",
     "  feature_importance_barplot.png\n",
     "  feature_importance_scores.csv\n")
+
+#execution
+#bashRscript feature_importance_heatmap.R my_data.csv target_column
+
+
+                   
