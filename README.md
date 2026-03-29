@@ -1,1 +1,1 @@
-## Predict HIV latency
+## Epigenetic modeling of stochastic HIV transcription
