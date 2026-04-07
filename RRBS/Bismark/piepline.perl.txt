@@ -1,5 +1,6 @@
 1. Use Bismark to index reference genome (Homo_sapiens.GRCh38.dna.primary_assembly.fa)
-$ /home/labadmin/Documents/Software/Bismark-master/bismark_genome_preparation --path_to_aligner /home/labadmin/Documents/Software/bowtie2-2.4.2-sra-linux-x86_64/ --verbose ../bismark/
+$ /path_to_Bismark-master/bismark_genome_preparation --path_to_aligner /path_to_bowtie24/ --verbose /path_to_reference_genome/
+#/home/labadmin/Documents/Software/Bismark-master/bismark_genome_preparation --path_to_aligner /home/labadmin/Documents/Software/bowtie2-2.4.2-sra-linux-x86_64/ --verbose ../bismark/
 #Of note, reference genome to be saved in a folder and path to folder, not a file name.
 
 2. #Alignment and methylation calling
