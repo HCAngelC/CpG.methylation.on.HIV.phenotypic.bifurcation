@@ -67,7 +67,7 @@ xi_subpopulation <- setNames(
   subpopulation_meta$subpopulation_id
 )
 
-# 2 ▸ SIMULATE RRBS DATA  (GFP+ and GFP- sorted populations per clone)
+# 2 ▸ SIMULATE RRBS DATA (GFP-Bright and GFP-Dim sorted subpopulations)
 # =============================================================
 # Model: methylation at CpG site j across 2 subpopulations (GFP-Bright versus GFP-Dim)
 #
