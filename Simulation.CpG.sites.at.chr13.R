@@ -8,6 +8,7 @@
 ##                                                                            ##
 ##   Models:                                                                  ##
 ##     1.  Beta-binomial RRBS differential methylation (GFP+ vs GFP-)         ##
+##                                                                            ##
 ##   Author : Heng-Chang Chen                                                 ##
 ##   Date   : 2026-05-25                                                      ##
 ##                                                                            ##
