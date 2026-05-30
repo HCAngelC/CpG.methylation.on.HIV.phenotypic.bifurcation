@@ -1,1 +1,1 @@
-## Epigenetic modeling of stochastic HIV transcription
+## Epigenetic modeling of CpG methylation accounting for phenotypic bifurcation of HIV transcription
