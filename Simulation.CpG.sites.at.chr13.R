@@ -80,7 +80,7 @@ xi_subpopulation <- setNames(
 #
 # =============================================================
 
-rbetabinom <- function(n, size, prob, rho = 0.05) {
+rbetabinom <- function(n, size, prob, rho) {
   # Beta-binomial: overdispersed binomial (rho = overdispersion)
   a <- prob       * (1 - rho) / rho
   b <- (1 - prob) * (1 - rho) / rho
@@ -88,15 +88,27 @@ rbetabinom <- function(n, size, prob, rho = 0.05) {
   rbinom(n, as.integer(size), p) # size should be an integer
 }
 
-simulate_rrbs_subpopulation <- function(subpopulation_id, xi = 0.5) {
-
+simulate_rrbs_subpopulation <- function(subpopulation_id, xi = 0.9657) {
+  # Calculate rho per subpopulation
+  beta.mean.dim <- mean(CPG_chr13$beta.dim)
+  beta.var.dim <- var(CPG_chr13$beta.dim)
+  binom.var.dim <- beta.mean.dim*(1-beta.mean.dim)/27.3559 #mean of CpG coverage at chr13
+  rho.dim <- (beta.var.dim/binom.var.dim-1)/(27.3559-1)
+  rho.dim <- pmin(pmax(rho.dim, 0.001), 0.999)
+  
+  beta.mean.bright <- mean(CPG_chr13$beta.bright)
+  beta.var.bright <- var(CPG_chr13$beta.bright)
+  binom.var.bright <- beta.mean.bright*(1-beta.mean.bright)/35.8783 #mean of CpG coverage at chr13
+  rho.bright <- (beta.var.bright/binom.var.bright-1)/(35.8783-1)
+  rho.bright <- pmin(pmax(rho.bright, 0.001), 0.999)
+  
   # Per-CpG baseline methylation for this subpopulation
   cpg_sensitivity <- ifelse(CpG_chr13$sig == "sig", 1.4, 1.0)
   
-  meth_latent <- pmin(0.05 + xi * 0.85 * cpg_sensitivity *
-                        (1 + rnorm(N_CpG, 0, 0.07)), 0.98)
-  meth_active <- pmin(0.02 + (1 - xi) * 0.25 * cpg_sensitivity *
-                        (1 + rnorm(N_CpG, 0, 0.05)), 0.35)
+  meth_latent <- pmin(0.02174 + xi * 0.0797 * cpg_sensitivity *
+                        (1 + rnorm(N_CpG, 0, 0.07)), 0.2727)
+  meth_active <- pmin(0.04042 + (1 - xi) * 0.2314 * cpg_sensitivity *
+                        (1 + rnorm(N_CpG, 0, 0.05)), 0.1477)
 
   bind_rows(
     tibble(
@@ -106,7 +118,7 @@ simulate_rrbs_subpopulation <- function(subpopulation_id, xi = 0.5) {
       beta       = CpG_chr13$beta.bright,
       dm         = CpG_chr13$dm.bright,
       meth_prob  = meth_active,
-      meth_reads = rbetabinom(N_CpG, COVERAGE_RRBS, meth_active, rho = 0.04),
+      meth_reads = rbetabinom(N_CpG, COVERAGE_RRBS, meth_active, rho.bright),
       total_reads = COVERAGE_RRBS,
       meth_pct   = meth_reads / total_reads,
       rank       = CpG_chr13$Rank,
@@ -119,7 +131,7 @@ simulate_rrbs_subpopulation <- function(subpopulation_id, xi = 0.5) {
       beta       = CpG_chr13$beta.dim,
       dm         = CpG_chr13$dm.dim,
       meth_prob  = meth_latent,
-      meth_reads = rbetabinom(N_CpG, COVERAGE_RRBS, meth_latent, rho = 0.06),
+      meth_reads = rbetabinom(N_CpG, COVERAGE_RRBS, meth_latent, rho.dim),
       total_reads = COVERAGE_RRBS,
       meth_pct   = meth_reads / total_reads,
       rank       = CpG_chr13$Rank,
