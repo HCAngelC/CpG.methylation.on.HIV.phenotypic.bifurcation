@@ -1,19 +1,19 @@
 ## ═══════════════════════════════════════════════════════════════════════════ ##
 ##  1. Input data
 ## ═══════════════════════════════════════════════════════════════════════════ ##
-file.to.Jurkat.ENCODE.pool <- file.path("","home", "labadmin", "Documents", "Arbeitplatz", "Projekten", "HIVasRNAMAP", "Illumina.seq", "RRBS.seq", "RRBS3.pHCC5", "analyse", "RRBS.Jurkat.mapped.sorted.pools.sam")
+file.to.Jurkat.ENCODE.pool <- file.path("path_to_file", "RRBS.Jurkat.mapped.sorted.pools.sam")
 
-file.path.to.814.pos <- file.path("","home", "labadmin", "Documents", "Arbeitplatz", "Projekten", "HIV.epigenetic.inheritance", "Illumina.seq", "RRBS.seq", "analyse", "RRBS1_bismark_bt2.mapped.sorted.sam") # pooled replicates
-file.path.to.814.pos.rep1 <- file.path("","home", "labadmin", "Documents", "Arbeitplatz", "Projekten", "HIV.epigenetic.inheritance", "Illumina.seq", "RRBS.seq", "analyse", "RRBS1.rep1.mapped.sorted.sam")
-file.path.to.814.pos.rep2 <- file.path("","home", "labadmin", "Documents", "Arbeitplatz", "Projekten", "HIV.epigenetic.inheritance", "Illumina.seq", "RRBS.seq", "analyse", "RRBS1.rep2.mapped.sorted.sam")
+file.path.to.814.pos <- file.path("path_to_file", "RRBS1_bismark_bt2.mapped.sorted.sam") # pooled replicates
+file.path.to.814.pos.rep1 <- file.path("path_to_file", "RRBS1.rep1.mapped.sorted.sam")
+file.path.to.814.pos.rep2 <- file.path("path_to_file", "RRBS1.rep2.mapped.sorted.sam")
 
-file.path.to.814.neg <- file.path("","home", "labadmin", "Documents", "Arbeitplatz", "Projekten", "HIV.epigenetic.inheritance", "Illumina.seq", "RRBS.seq", "analyse", "RRBS2_bismark_bt2.mapped.sorted.sam") # pooled replicates
-file.path.to.814.neg.rep1 <- file.path("","home", "labadmin", "Documents", "Arbeitplatz", "Projekten", "HIV.epigenetic.inheritance", "Illumina.seq", "RRBS.seq", "analyse", "RRBS2.rep1.mapped.sorted.sam")
-file.path.to.814.neg.rep2 <- file.path("","home", "labadmin", "Documents", "Arbeitplatz", "Projekten", "HIV.epigenetic.inheritance", "Illumina.seq", "RRBS.seq", "analyse", "RRBS2.rep2.mapped.sorted.sam")
+file.path.to.814.neg <- file.path("path_to_file", "RRBS2_bismark_bt2.mapped.sorted.sam") # pooled replicates
+file.path.to.814.neg.rep1 <- file.path("path_to_file", "RRBS2.rep1.mapped.sorted.sam")
+file.path.to.814.neg.rep2 <- file.path("path_to_file", "RRBS2.rep2.mapped.sorted.sam")
 
 ###
-f814.pos <- processBismarkAln(location = file.path("","home", "labadmin", "Documents", "Arbeitplatz", "Projekten", "HIV.epigenetic.inheritance", "Illumina.seq", "RRBS.seq", "RRBS1", "RRBS1_bismark_bt2.mapped.sorted.sam"), sample.id = "f814.pos", assembly = "hg38")
-f814.neg <- processBismarkAln(location = file.path("","home", "labadmin", "Documents", "Arbeitplatz", "Projekten", "HIV.epigenetic.inheritance", "Illumina.seq", "RRBS.seq", "RRBS2", "RRBS2_bismark_bt2.mapped.sorted.sam"), sample.id = "f814.neg", assembly = "hg38")
+f814.pos <- processBismarkAln(location = file.path("path_to_file", "RRBS1_bismark_bt2.mapped.sorted.sam"), sample.id = "f814.pos", assembly = "hg38")
+f814.neg <- processBismarkAln(location = file.path("path_to_file", "RRBS2_bismark_bt2.mapped.sorted.sam"), sample.id = "f814.neg", assembly = "hg38")
 
 ## ═══════════════════════════════════════════════════════════════════════════ ##
 ##  2. File list
